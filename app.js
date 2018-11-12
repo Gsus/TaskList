@@ -38,10 +38,10 @@ function addTask(e) {
     link.innerHTML = '<i class = "fa fa-remove"></i>';
     // Append the link to li
     li.appendChild(link);
-    
+
     // Append li to ul
     taskList.appendChild(li);
- 
+
     // Clear input
     taskInput.value = '';
 
@@ -62,5 +62,12 @@ function removeTask(e) {
 
 // Clear tasks
 function clearTasks(e) {
-    console.log(e.target);
+    // If there are no tasks added to the list
+    if (taskList.firstElementChild === null) {
+        alert("Task List is empty");
+    }
+
+    else {
+        taskList.innerHTML = '';
+    }
 }
