@@ -16,6 +16,8 @@ function loadEventListeners() {
     taskList.addEventListener('click', removeTask);
     // Clear tasks event
     clearBtn.addEventListener('click', clearTasks);
+    // Filter tasks event
+    filter.addEventListener('keyup', filterTasks);
 }
 
 // Add Task
@@ -24,31 +26,33 @@ function addTask(e) {
         alert('Add a task');
     }
 
-    // Create li element
-    const li = document.createElement('li');
-    // Add class
-    li.className = 'collection-item';
-    // Create text node and append to li
-    li.appendChild(document.createTextNode(taskInput.value));
-    // Create new link element
-    const link = document.createElement('a');
-    // Add class
-    link.className = 'delete-item secondary-content';
-    // Add icon html
-    link.innerHTML = '<i class = "fa fa-remove"></i>';
-    // Append the link to li
-    li.appendChild(link);
-
-    // Append li to ul
-    taskList.appendChild(li);
-
-    // Clear input
-    taskInput.value = '';
-
-    // Log li to the console
-    console.log(li);
-
-    e.preventDefault();
+    else {
+        // Create li element
+        const li = document.createElement('li');
+        // Add class
+        li.className = 'collection-item';
+        // Create text node and append to li
+        li.appendChild(document.createTextNode(taskInput.value));
+        // Create new link element
+        const link = document.createElement('a');
+        // Add class
+        link.className = 'delete-item secondary-content';
+        // Add icon html
+        link.innerHTML = '<i class = "fa fa-remove"></i>';
+        // Append the link to li
+        li.appendChild(link);
+    
+        // Append li to ul
+        taskList.appendChild(li);
+    
+        // Clear input
+        taskInput.value = '';
+    
+        // Log li to the console
+        console.log(li);
+    
+        e.preventDefault();
+    }
 }
 
 //  Remove task
@@ -65,11 +69,21 @@ function clearTasks(e) {
     // If there are no tasks added to the list
     if (taskList.firstElementChild === null) {
         alert('Task List is empty');
-    }
-
+    } 
+    // Otherwise, clear list.
     else {
-        if(confirm('Are you sure? This will clear every task in the list')) {
+        if(confirm('Are you sure? This will clear every task on the list')) {
             taskList.innerHTML = '';
         }
     }
+}
+
+// Filter Tasks
+function filterTasks(e) {
+    const text = e.target.value.toLowerCase();
+
+    document.querySelectorAll('.collection-item').forEach (function(task) { 
+        const item = task.firstChild;
+        console.log(item);
+    });
 }
