@@ -64,10 +64,12 @@ function removeTask(e) {
 function clearTasks(e) {
     // If there are no tasks added to the list
     if (taskList.firstElementChild === null) {
-        alert("Task List is empty");
+        alert('Task List is empty');
     }
 
     else {
-        taskList.innerHTML = '';
+        if(confirm('Are you sure? This will clear every task in the list')) {
+            taskList.innerHTML = '';
+        }
     }
 }
